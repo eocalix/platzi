@@ -8,27 +8,42 @@
 </head>
 <body>
     <div id="app">
-        <button @click="sumar">Sumar 1</button>
-        <!--<button @click="contador++">Sumar 1</button>-->
-        <button v-on:click="restar">Restar 1</button>
-        El contador está en {{ contador }}
+        <input type="text" name="nombre" id="txtnombre" 
+        placeholder="Ingresa tu nombre" v-model="nombre">
+        <p>Tu nombre en mayúscula es: {{ nombre | uppercase }}</p>
+
+        <form v-on:submit.prevent="submit" action="" method="get">
+            <h2>¿Cuáles son tus cursos favoritos?</h2>
+            <input type="checkbox" v-model="cursos" id="vue" value="vue">
+            <label for="vue">Curso de Vue.js</label>
+            <input type="checkbox" v-model="cursos" id="seo" value="seo">
+            <label for="seo">Curso de SEO</label>
+            <input type="checkbox" v-model="cursos" id="react" value="react">
+            <label for="react">Curso de React y Redux</label>
+            <input type="checkbox" v-model="cursos" id="growth" value="growth">
+            <label for="growth">Curso de Growth Marketing</label>
+            <button type="submit">Enviar</button>
+        </form>
     </div>
-    <script src="web/js/vue.min.js"></script>
+    <script src="web/js/vue.js"></script>
     <script type="text/javascript">
         let app = new Vue ({
             el: '#app',
             data: {
-                contador: 0
+                nombre: '',
+                cursos: []
+            },
+            filters : {
+                uppercase: function(str) {
+                    return str.toUpperCase();
+                }
             },
             methods: {
-                sumar: function() {
-                    this.contador++;
-                },
-                restar: function() {
-                    this.contador--;
+                submit: function() {
+                    console.log('Se ejecuta el método submit');
+                    console.log(this.cursos);
                 }
             }
-            
         });
     </script>
 </body>
