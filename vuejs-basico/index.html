@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Curso Básico Vue.js</title>
+</head>
+<body>
+    <div id="app">
+        Hola {{ nombre }}
+        <a v-bind:href="url" target="_blank">{{ pagina }}</a>
+        <!--<a :href="url" target="_blank">{{ pagina }}</a>-->
+    </div>
+    <script src="web/js/vue.min.js"></script>
+    <script type="text/javascript">
+        let app = new Vue ({
+            el: '#app',
+            data: {
+                nombre: 'Edwin',
+                url: 'https://google.com.sv',
+                pagina: 'Ir a Google',
+            }
+        });
+    </script>
+</body>
+</html>
