@@ -8,29 +8,29 @@
 </head>
 <body>
     <div id="app">
-        <template v-if="mostrar">
-            <h1>Este es mi título</h1>
-            <h2>Este es mi subtítulo</h2>
-            <a v-if="mostrar" :href="url" target="_blank">Ir a {{ pagina }}</a>
-        </template>
-
-        <div v-show="mostrar">
-            <h1>Este es mi título</h1>
-            <h2>Este es mi subtítulo</h2>
-            <a v-if="mostrar" :href="url" target="_blank">Ir a {{ pagina }}</a>
-        </div>
-        <div v-show="!mostrar">
-            Esto está oculto
-        </div>
+        <h1>{{ titulo | uppercase }}</h1>
+        <h2>{{ subtitulo | lowercase }}</h2>
+        <h3>{{ reto | uppercase | capitalize }}</h3>
     </div>
     <script src="web/js/vue.min.js"></script>
     <script type="text/javascript">
         let app = new Vue ({
             el: '#app',
             data: {
-                url: 'https://google.com.sv',
-                pagina: 'Ir a Google',
-                mostrar: true
+                titulo: 'Estás en Platzi',
+                subtitulo: 'Estás viendo el curso de Vue.js',
+                reto: 'Este es el reto'
+            },
+            filters: {
+                uppercase: function(str) {
+                    return str.toUpperCase();
+                },
+                lowercase: function(str) {
+                    return str.toLowerCase();
+                },
+                capitalize: function(str) {
+                    return str.slice(0,1).toUpperCase() + str.slice(1).toLowerCase();
+                }
             }
         });
     </script>
