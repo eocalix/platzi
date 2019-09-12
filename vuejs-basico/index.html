@@ -8,14 +8,15 @@
 </head>
 <body>
     <div id="app">
-
+        <input type="text" v-model="nombre" placeholder="Nombre">
+        <p>{{ nombre }}</p>
         <form v-on:submit.prevent="submit" action="" method="get">
             <h2>¿Cuáles son tus cursos favoritos?</h2>
             <template v-for="curso in cursos">
                 <curso v-bind:curso="curso" v-on:checked1="selectCurso"></curso>
                 <!--<input type="checkbox" v-model="cursosSeleccionados" v-bind:id="curso.value" v-bind:value="curso.value">
                 <label v-bind:for="curso.value">{{ curso.nombre }}</label>-->
-                <botonpers v-bind:msj="curso.nombre" v-bind:valor="curso.nombre"></botonpers>
+                <botonpers v-bind:msj="curso.nombre" v-bind:valor="curso.nombre" v-on:click="mostrarMensaje(curso.nombre)"></botonpers>
             </template>
             <hr>
             <button type="submit">Enviar</button>
@@ -42,12 +43,12 @@
         Vue.component('botonpers', {
             props: ['msj', 'valor'],
             methods: {
-                mensaje: function() {
-                    alert(this.msj);
+                emitir: function() {
+                    this.$emit('click', this.msj);
                 }
             },
             template: `
-                <button v-on:click="mensaje()">{{ this.valor }}</button>
+                <button v-on:click="emitir">{{ this.valor }}</button>
             `
         });
         let app = new Vue ({
@@ -71,7 +72,8 @@
                         value: 'growth'
                     }
                 ],
-                cursosSeleccionados: []
+                cursosSeleccionados: [],
+                nombre: ''
             },
             methods: {
                 submit: function() {
@@ -86,6 +88,9 @@
                         this.cursosSeleccionados.splice(index, 1);
                     }
                 },
+                mostrarMensaje: function(msj) {
+                    alert(msj);
+                }
             }
         });
     </script>
