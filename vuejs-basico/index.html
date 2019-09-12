@@ -8,30 +8,27 @@
 </head>
 <body>
     <div id="app">
-        <h1>{{ titulo | uppercase }}</h1>
-        <h2>{{ subtitulo | lowercase }}</h2>
-        <h3>{{ reto | uppercase | capitalize }}</h3>
+        <button @click="sumar">Sumar 1</button>
+        <!--<button @click="contador++">Sumar 1</button>-->
+        <button v-on:click="restar">Restar 1</button>
+        El contador está en {{ contador }}
     </div>
     <script src="web/js/vue.min.js"></script>
     <script type="text/javascript">
         let app = new Vue ({
             el: '#app',
             data: {
-                titulo: 'Estás en Platzi',
-                subtitulo: 'Estás viendo el curso de Vue.js',
-                reto: 'Este es el reto'
+                contador: 0
             },
-            filters: {
-                uppercase: function(str) {
-                    return str.toUpperCase();
+            methods: {
+                sumar: function() {
+                    this.contador++;
                 },
-                lowercase: function(str) {
-                    return str.toLowerCase();
-                },
-                capitalize: function(str) {
-                    return str.slice(0,1).toUpperCase() + str.slice(1).toLowerCase();
+                restar: function() {
+                    this.contador--;
                 }
             }
+            
         });
     </script>
 </body>
