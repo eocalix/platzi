@@ -8,18 +8,29 @@
 </head>
 <body>
     <div id="app">
-        Hola {{ nombre }}
-        <a v-bind:href="url" target="_blank">{{ pagina }}</a>
-        <!--<a :href="url" target="_blank">{{ pagina }}</a>-->
+        <template v-if="mostrar">
+            <h1>Este es mi título</h1>
+            <h2>Este es mi subtítulo</h2>
+            <a v-if="mostrar" :href="url" target="_blank">Ir a {{ pagina }}</a>
+        </template>
+
+        <div v-show="mostrar">
+            <h1>Este es mi título</h1>
+            <h2>Este es mi subtítulo</h2>
+            <a v-if="mostrar" :href="url" target="_blank">Ir a {{ pagina }}</a>
+        </div>
+        <div v-show="!mostrar">
+            Esto está oculto
+        </div>
     </div>
     <script src="web/js/vue.min.js"></script>
     <script type="text/javascript">
         let app = new Vue ({
             el: '#app',
             data: {
-                nombre: 'Edwin',
                 url: 'https://google.com.sv',
                 pagina: 'Ir a Google',
+                mostrar: true
             }
         });
     </script>
