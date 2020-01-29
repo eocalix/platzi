@@ -17,11 +17,14 @@
     case 400: 
       echo 'Pedido incorrecto';
     break;
+    case 404: 
+      echo 'Recurso no encontrado';
+    break;
     case 500: 
       echo 'El servidor falló';
     break;
     default:
-      # code...
+      echo 'Error desconocido';
       break;
   }
 ?>

@@ -126,6 +126,10 @@
         {
           echo json_encode($books[$resourceId]);
         }
+        else 
+        {
+          http_response_code(404);
+        }
       }
     break;
     case 'POST':
